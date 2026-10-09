@@ -526,26 +526,40 @@
                 </p>
             </div>
 
-            <form class="contact-form" id="contactForm">
-                <h3>Kirim Pesan</h3>
+            
+<form class="contact-form"
+      id="contactForm"
+      action="https://formspree.io/f/mrpeqvdd"
+      method="POST">
 
-                <label for="nama">Nama</label>
-                <input type="text" id="nama"
-                       placeholder="Masukkan nama kamu" required>
+    <h3>Kirim Pesan</h3>
 
-                <label for="email">Email</label>
-                <input type="email" id="email"
-                       placeholder="Masukkan email kamu" required>
+    <label for="nama">Nama</label>
+    <input type="text"
+           id="nama"
+           name="nama"
+           placeholder="Masukkan nama kamu"
+           required>
 
-                <label for="pesan">Pesan</label>
-                <textarea id="pesan"
-                          placeholder="Tulis pesan kamu di sini..."
-                          required></textarea>
+    <label for="email">Email</label>
+    <input type="email"
+           id="email"
+           name="email"
+           placeholder="Masukkan email kamu"
+           required>
 
-                <button class="btn" type="submit">
-                    Kirim Pesan
-                </button>
-            </form>
+    <label for="pesan">Pesan</label>
+    <textarea id="pesan"
+              name="pesan"
+              placeholder="Tulis pesan kamu di sini..."
+              required></textarea>
+
+    <button class="btn" type="submit">
+        Kirim Pesan
+    </button>
+
+</form>
+
         </div>
     </section>
 
