@@ -630,20 +630,8 @@
     });
 
     // FORMULIR KONTAK (DEMO)
-    document.getElementById("contactForm")
-        .addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const nama = document.getElementById("nama").value;
-
-            alert(
-                "Terima kasih, " + nama +
-                "! Formulir berhasil dicoba. " +
-                "Pesan belum dikirim ke email atau server."
-            );
-
-            this.reset();
-        });
+        // Formulir dikirim langsung ke Formspree
+// Tidak perlu event.preventDefault()
 </script>
 
 </body>
