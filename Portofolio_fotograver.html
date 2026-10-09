@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lens & Light | Portofolio Fotografer</title>
+
+    <style>
+        :root {
+            --bg: #0b1220;
+            --card: #131e30;
+            --text: #f5f7fb;
+            --muted: #aab6c8;
+            --accent: #e8b86d;
+            --border: #29374c;
+        }
+
+        body.light {
+            --bg: #f2f5f9;
+            --card: #ffffff;
+            --text: #172337;
+            --muted: #5c6879;
+            --accent: #a56a16;
+            --border: #d7dfeb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background .3s, color .3s;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        button, .btn {
+            cursor: pointer;
+            border: 0;
+            font: inherit;
+        }
+
+        .menu button {
+            padding: 8px 10px;
+            border-radius: 7px;
+            color: var(--text);
+            background: transparent;
+        }
+
+        .menu button:hover,
+        .menu button.active {
+            background: var(--accent);
+            color: #171717;
+        }
+
+        .theme {
+            background: var(--border);
+            color: var(--text);
+            border-radius: 50%;
+            padding: 8px 11px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 24px 20px 45px;
+            min-height: 75vh;
+        }
+
+        .page {
+            display: none;
+            animation: muncul .35s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            min-height: 440px;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 35px;
+            background:
+                linear-gradient(90deg,
+                    rgba(5, 12, 24, .92),
+                    rgba(5, 12, 24, .15)),
+                url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=85")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 550px;
+            color: white;
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 1.15;
+            margin: 12px 0 18px;
+        }
+
+        h2 {
+            font-size: 30px;
+            line-height: 1.3;
+            margin: 8px 0 12px;
+        }
+
+        h3 {
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            color: #edf1f8;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #151515;
+            padding: 11px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        .section-head {
+            margin: 10px 0 22px;
+        }
+
+        .section-head p {
+            margin-bottom: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .photo {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .photo img {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform .35s;
+        }
+
+        .photo:hover img {
+            transform: scale(1.04);
+        }
+
+        .photo-info {
+            padding: 12px 14px;
+        }
+
+        .photo-info p {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .info {
+            border: 1px solid var(--border);
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .contact-info, .contact-form {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 7px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .menu {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .menu button {
+                font-size: 13px;
+                padding: 7px 9px;
+            }
+
+            main {
+                padding: 18px 14px 30px;
+            }
+
+            .hero {
+                min-height: 420px;
+                padding: 24px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .photo img {
+                height: 150px;
+            }
+
+            .about, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about img {
+                height: 280px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo img {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">📷 Lens & Light</div>
+
+        <div class="menu">
+            <button class="active" data-page="home">Beranda</button>
+            <button data-page="gallery">Galeri</button>
+            <button data-page="about">Tentang</button>
+            <button data-page="contact">Kontak</button>
+        </div>
+
+        <button class="theme" id="themeToggle"
+                aria-label="Ganti tema">☀️</button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HALAMAN BERANDA -->
+    <section class="page active" id="home">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">Fotografi adalah cerita</div>
+                <h1>Menangkap Keindahan di Setiap Sudut Dunia</h1>
+                <p>
+                    Selamat datang di portofolio saya.
+                    Saya seorang fotografer yang senang mengabadikan
+                    momen, alam, dan kehidupan melalui lensa kamera.
+                </p>
+                <button class="btn" data-go="gallery">
+                    Jelajahi Galeri →
+                </button>
+            </div>
+        </div>
+
+        <div class="section-head" style="margin-top:30px">
+            <h2>Selamat Datang!</h2>
+            <p>
+                Setiap foto memiliki cerita.
+                Inilah tempat saya membagikan cerita tersebut.
+            </p>
+        </div>
+    </section>
+
+    <!-- HALAMAN GALERI -->
+    <section class="page" id="gallery">
+        <div class="section-head">
+            <div class="eyebrow">Koleksi karya</div>
+            <h2>Galeri Fotografi</h2>
+            <p>Beberapa pemandangan indah yang saya abadikan.</p>
+        </div>
+
+        <div class="grid">
+            <article class="photo">
+                <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80"
+                     alt="Pemandangan danau">
+                <div class="photo-info">
+                    <h3>Lake View</h3>
+                    <p>Landscape Photography</p>
+                </div>
+            </article>
+
+            <article class="photo">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80"
+                     alt="Pegunungan">
+                <div class="photo-info">
+                    <h3>Mountain</h3>
+                    <p>Nature Photography</p>
+                </div>
+            </article>
+
+            <article class="photo">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80"
+                     alt="Hutan hijau">
+                <div class="photo-info">
+                    <h3>Green Forest</h3>
+                    <p>Nature Photography</p>
+                </div>
+            </article>
+
+            <article class="photo">
+                <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=80"
+                     alt="Matahari terbit">
+                <div class="photo-info">
+                    <h3>Golden Sunrise</h3>
+                    <p>Sunrise Photography</p>
+                </div>
+            </article>
+
+            <article class="photo">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80"
+                     alt="Lanskap alam">
+                <div class="photo-info">
+                    <h3>Open Nature</h3>
+                    <p>Travel Photography</p>
+                </div>
+            </article>
+
+            <article class="photo">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=80"
+                     alt="Gunung di bawah langit malam">
+                <div class="photo-info">
+                    <h3>Starry Night</h3>
+                    <p>Night Photography</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- HALAMAN TENTANG -->
+    <section class="page" id="about">
+        <div class="about">
+            <img
+                src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=900&q=85"
+                alt="Kamera fotografer">
+
+            <div>
+                <div class="eyebrow">Tentang saya</div>
+                <h2>Fotografi, Seni, dan Cerita</h2>
+                <p>
+                    Halo! Saya seorang fotografer pemula yang
+                    memiliki ketertarikan pada alam, pemandangan,
+                    dan kehidupan sehari-hari.
+                </p>
+                <p>
+                    Bagi saya, fotografi bukan sekadar mengambil
+                    gambar, tetapi juga menyampaikan perasaan,
+                    cerita, dan keindahan melalui sebuah foto.
+                </p>
+
+                <div class="info">
+                    <h3>📍 Lokasi</h3>
+                    <p>Pematang Siantar, Indonesia</p>
+
+                    <h3>📸 Spesialisasi</h3>
+                    <p>Landscape, Nature, Street Photography</p>
+
+                    <h3>✉️ Email</h3>
+                    <p>fotografer@example.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HALAMAN KONTAK -->
+    <section class="page" id="contact">
+        <div class="section-head">
+            <div class="eyebrow">Mari terhubung</div>
+            <h2>Hubungi Saya</h2>
+            <p>
+                Punya pertanyaan atau ingin bekerja sama?
+                Silakan kirim pesan melalui formulir ini.
+            </p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Informasi Kontak</h3>
+                <p>📧 Email: fotografer@example.com</p>
+                <p>📍 Lokasi: Pematang Siantar, Indonesia</p>
+                <p>📷 Bidang: Fotografi dan editing foto</p>
+                <p>
+                    Saya terbuka untuk diskusi tentang fotografi,
+                    proyek kreatif, dan kolaborasi.
+                </p>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <h3>Kirim Pesan</h3>
+
+                <label for="nama">Nama</label>
+                <input type="text" id="nama"
+                       placeholder="Masukkan nama kamu" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email"
+                       placeholder="Masukkan email kamu" required>
+
+                <label for="pesan">Pesan</label>
+                <textarea id="pesan"
+                          placeholder="Tulis pesan kamu di sini..."
+                          required></textarea>
+
+                <button class="btn" type="submit">
+                    Kirim Pesan
+                </button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 Lens & Light — Portofolio Fotografi
+    <br>
+    Dibuat dengan HTML, CSS, dan JavaScript.
+</footer>
+
+<script>
+    // FUNGSI BERPINDAH HALAMAN
+    function bukaHalaman(namaHalaman) {
+        const halaman = document.querySelectorAll(".page");
+        const tombol = document.querySelectorAll("[data-page]");
+
+        halaman.forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+        tombol.forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+        document.getElementById(namaHalaman)
+            .classList.add("active");
+
+        const tombolAktif = document.querySelector(
+            '[data-page="' + namaHalaman + '"]'
+        );
+
+        if (tombolAktif) {
+            tombolAktif.classList.add("active");
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    // MENU NAVIGASI
+    document.querySelectorAll("[data-page]").forEach(function(tombol) {
+        tombol.addEventListener("click", function() {
+            bukaHalaman(tombol.dataset.page);
+        });
+    });
+
+    // TOMBOL DI DALAM HALAMAN
+    document.querySelectorAll("[data-go]").forEach(function(tombol) {
+        tombol.addEventListener("click", function() {
+            bukaHalaman(tombol.dataset.go);
+        });
+    });
+
+    // MODE TERANG DAN GELAP
+    const themeToggle = document.getElementById("themeToggle");
+
+    themeToggle.addEventListener("click", function() {
+        document.body.classList.toggle("light");
+
+        if (document.body.classList.contains("light")) {
+            themeToggle.textContent = "🌙";
+        } else {
+            themeToggle.textContent = "☀️";
+        }
+    });
+
+    // FORMULIR KONTAK (DEMO)
+    document.getElementById("contactForm")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById("nama").value;
+
+            alert(
+                "Terima kasih, " + nama +
+                "! Formulir berhasil dicoba. " +
+                "Pesan belum dikirim ke email atau server."
+            );
+
+            this.reset();
+        });
+</script>
+
+</body>
+</html>
