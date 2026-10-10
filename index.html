@@ -7,66 +7,6 @@
     <title>Lens & Light | Portofolio Fotografer</title>
 
     <style>
-
-/* PROFIL GITHUB */
-.github-profile {
-  padding: 60px 20px;
-  text-align: center;
-  background: #101010;
-  color: #ffffff;
-}
-
-.github-card {
-  max-width: 420px;
-  margin: auto;
-  padding: 35px 25px;
-  border: 1px solid #333333;
-  border-radius: 20px;
-  background: #1a1a1a;
-  box-shadow: 0 10px 35px #00000055;
-}
-
-.github-avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #c9a96e;
-  margin-bottom: 15px;
-}
-
-.github-label {
-  color: #c9a96e;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-.github-card h2 {
-  margin: 12px 0;
-  font-size: 25px;
-}
-
-.github-bio {
-  color: #bbbbbb;
-  margin-bottom: 25px;
-}
-
-.github-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background: #c9a96e;
-  color: #111111;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.github-button:hover {
-  background: #ffffff;
-  transform: translateY(-3px);
-}
-
         :root {
             --bg: #0b1220;
             --card: #131e30;
@@ -476,9 +416,10 @@
                 <img src="IMG-20260914-WA0054.jpg"
      alt="Bendera Indonesia"
      width="300">
+                     alt="Pemandangan danau">
                 <div class="photo-info">
-                    <h3>My country flag</h3>
-                    <p>Flag Photography</p>
+                    <h3>Lake View</h3>
+                    <p>Landscape Photography</p>
                 </div>
             </article>
 
@@ -558,41 +499,13 @@
                     <p>Landscape, Nature, Street Photography</p>
 
                     <h3>✉️ Email</h3>
-                    <p>bagasekkaprasetiyo@gmail.com</p>
+                    <p>fotografer@example.com</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-
-<!-- PROFIL GITHUB -->
-<section class="github-profile" id="github">
-  <div class="github-card">
-    <img
-      src="https://github.com/gaszzzz.png"
-      alt="Foto profil GitHub Bagas"
-      class="github-avatar"
-    >
-
-    <p class="github-label">TEMUKAN SAYA DI GITHUB</p>
-    <h2>Bagas Ekka Prasetiyo</h2>
-    <p class="github-bio">
-      Photography enthusiast | Web Developer
-    </p>
-
-    <a
-      href="https://github.com/gaszzzz"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="github-button"
-    >
-      Lihat GitHub Saya ↗
-    </a>
-  </div>
-</section>
-
-<!-- HALAMAN KONTAK -->
+    <!-- HALAMAN KONTAK -->
     <section class="page" id="contact">
         <div class="section-head">
             <div class="eyebrow">Mari terhubung</div>
@@ -606,7 +519,7 @@
         <div class="contact-grid">
             <div class="contact-info">
                 <h3>Informasi Kontak</h3>
-                <p>📧 Email: bagasekkaprasetiyo@gmail.com</p>
+                <p>📧 Email: fotografer@example.com</p>
                 <p>📍 Lokasi: Pematang Siantar, Indonesia</p>
                 <p>📷 Bidang: Fotografi dan editing foto</p>
                 <p>
@@ -615,47 +528,35 @@
                 </p>
             </div>
 
-            
-<form class="contact-form"
-      id="contactForm"
-      action="https://formspree.io/f/mrpeqvdd"
-      method="POST">
+            <form class="contact-form" id="contactForm">
+                <h3>Kirim Pesan</h3>
 
-    <h3>Kirim Pesan</h3>
+                <label for="nama">Nama</label>
+                <input type="text" id="nama"
+                       placeholder="Masukkan nama kamu" required>
 
-    <label for="nama">Nama</label>
-    <input type="text"
-           id="nama"
-           name="nama"
-           placeholder="Masukkan nama kamu"
-           required>
+                <label for="email">Email</label>
+                <input type="email" id="email"
+                       placeholder="Masukkan email kamu" required>
 
-    <label for="email">Email</label>
-    <input type="email"
-           id="email"
-           name="email"
-           placeholder="Masukkan email kamu"
-           required>
+                <label for="pesan">Pesan</label>
+                <textarea id="pesan"
+                          placeholder="Tulis pesan kamu di sini..."
+                          required></textarea>
 
-    <label for="pesan">Pesan</label>
-    <textarea id="pesan"
-              name="pesan"
-              placeholder="Tulis pesan kamu di sini..."
-              required></textarea>
-
-    <button class="btn" type="submit">
-        Kirim Pesan
-    </button>
-
-</form>
-
+                <button class="btn" type="submit">
+                    Kirim Pesan
+                </button>
+            </form>
         </div>
     </section>
 
 </main>
 
 <footer>
-    © 2026 Lens & Light — Portofolio Fotografi.
+    © 2026 Lens & Light — Portofolio Fotografi
+    <br>
+    Dibuat dengan HTML, CSS, dan JavaScript.
 </footer>
 
 <script>
@@ -717,8 +618,20 @@
     });
 
     // FORMULIR KONTAK (DEMO)
-        // Formulir dikirim langsung ke Formspree
-// Tidak perlu event.preventDefault()
+    document.getElementById("contactForm")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById("nama").value;
+
+            alert(
+                "Terima kasih, " + nama +
+                "! Formulir berhasil dicoba. " +
+                "Pesan belum dikirim ke email atau server."
+            );
+
+            this.reset();
+        });
 </script>
 
 </body>
